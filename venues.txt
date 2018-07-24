@@ -1,0 +1,47 @@
+[
+    {
+        "name": "el cantina",
+        "food": ["mexican"],
+        "drinks": ["soft drinks", "tequila", "beer"]
+    },
+    {
+        "name": "twin dynasty",
+        "food": ["chinese"],
+        "drinks": ["soft drinks", "rum", "beer", "whisky", "cider"]
+    },
+    {
+        "name": "spice of life",
+        "food": ["eggs", "meat", "fish", "pasta", "dairy"],
+        "drinks": ["vokda", "gin", "whisky", "rum", "cider", "beer", "soft drinks"]
+    },
+    {
+        "name": "the cambridge",
+        "food": ["eggs", "meat", "fish", "pasta", "dairy"],
+        "drinks": ["vokda", "gin", "cider", "beer", "soft drinks"]
+    },
+    {
+        "name": "wagamama",
+        "food": ["japanese"],
+        "drinks": ["beer", "cider", "soft drinks", "sake"]
+    },
+    {
+        "name": "sultan sofrasi",
+        "food": ["meat", "bread", "fish"],
+        "drinks": ["beer", "cider", "soft drinks"]
+    },
+    {
+        "name": "spirit house",
+        "food": ["nuts", "cheese", "fruit"],
+        "drinks": ["vodka", "gin", "rum", "tequila"]
+    },
+    {
+        "name": "tally joe",
+        "food": ["fish", "meat", "salad", "deserts"],
+        "drinks": ["beer", "cider", "soft drinks", "sake"]
+    },
+    {
+        "name": "fabrique",
+        "food": ["bread", "cheese", "deli"],
+        "drinks": ["soft drinks", "tea", "coffee"]
+    },
+]
