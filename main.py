@@ -5,7 +5,7 @@ import re, fileinput
 import itertools
 
 
-# in order to clean the json file from commas
+# in order to clean the json file from trailing commas
 def remove_trailing_commas(json_like):
 
     trailing_object_commas_re = re.compile(
@@ -22,11 +22,11 @@ venues = 'https://gist.githubusercontent.com/benjambles/ea36b76bc5d8ff09a51def54
 
 url_users = urllib2.urlopen(users)
 url_venue = urllib2.urlopen(venues)
-# dealing with users
+# dealing with users and lower casing all
 with open ('users.json', 'w+') as outfile:
     outfile.write(url_users.read().lower())
 
-# dealing with venues
+# dealing with venues including cleaning the file and lower casing all
 with open ('venues.txt', 'w+') as outfile:
     outfile.write(url_venue.read().lower())
 
@@ -44,12 +44,14 @@ with open ('venues.json', 'w+') as outfile:
 df_user = pd.DataFrame(pd.read_json('users.json'))
 df_venues  = pd.DataFrame(pd.read_json('venues.json'))
 
-# venues list
+# looping through venues within that loop through the user list
+# and then checking if any drink in venues is in user drink preference
+# also checking if the food users wont east is in the venue food menu.
+# finally creating a list consisting of (users, preferred drinks, venue) and (users, food wont eat, venue)
 f_message = []
 d_message = []
 for (venues_name ,venues_drink, venues_food) in itertools.izip_longest(df_venues['name'] ,df_venues['drinks'].iteritems(), df_venues['food'].iteritems()):
     for (v_drink, v_food) in itertools.izip_longest(venues_drink[1], venues_food[1]):
-        # user list
         for (user_name, users_drink, users_food) in itertools.izip_longest(df_user['name'] ,df_user['drinks'].iteritems(),df_user['wont_eat'].iteritems()):
             for u_drink in users_drink[1]:
                 if v_drink == u_drink:
@@ -65,7 +67,7 @@ for (venues_name ,venues_drink, venues_food) in itertools.izip_longest(df_venues
                             f_message.append(food_message)
 
 
-#counting the number of people who can drink and also who wont eat
+# counting the number of people who can drink and also who wont eat along with the venue name
 list_drink = []
 for i in range(len(d_message)):
     if (d_message[i][0], d_message[i][2]) not in list_drink:
@@ -97,7 +99,7 @@ print(count_drink_venues)
 print('number of people who cannot eat in these venues')
 print(count_wonteat_venues)
 
-
+# printing final result
 print('Places to go:')
 print('((Venue Name, numer of people who can drink), (Venue Name, numer of people who can have food))')
 for drink_venues in count_drink_venues:
